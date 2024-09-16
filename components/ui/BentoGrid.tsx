@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils/cn";
 import { BackgroundGradientAnimation } from "./GradientBg";
-import { Globe } from "./Globe";
 import { GlobeDemo } from "./GridGlobe";
 import { useState } from "react";
 import animationData from "@/data/confetti.json";

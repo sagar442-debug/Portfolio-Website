@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { HTMLProps, ReactNode, SVGProps, useRef } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -7,8 +7,17 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
 import { cn } from "@/lib/utils/cn";
+
+type ButtonProps = {
+  borderRadius?: string;
+  children: React.ReactNode;
+  as?: React.ElementType; // Replace any with React.ElementType for the component type
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+  className?: string;
+} & HTMLProps<HTMLElement>; // Use HTMLProps to type otherProps
 
 export function Button({
   borderRadius = "1.75rem",
@@ -19,16 +28,7 @@ export function Button({
   duration,
   className,
   ...otherProps
-}: {
-  borderRadius?: string;
-  children: React.ReactNode;
-  as?: any;
-  containerClassName?: string;
-  borderClassName?: string;
-  duration?: number;
-  className?: string;
-  [key: string]: any;
-}) {
+}: ButtonProps) {
   return (
     <Component
       className={cn(
@@ -69,20 +69,21 @@ export function Button({
   );
 }
 
+type MovingBorderProps = {
+  children: React.ReactNode;
+  duration?: number;
+  rx?: string;
+  ry?: string;
+} & SVGProps<SVGRectElement>; // Use SVGProps for otherProps
+
 export const MovingBorder = ({
   children,
   duration = 2000,
   rx,
   ry,
   ...otherProps
-}: {
-  children: React.ReactNode;
-  duration?: number;
-  rx?: string;
-  ry?: string;
-  [key: string]: any;
-}) => {
-  const pathRef = useRef<any>();
+}: MovingBorderProps) => {
+  const pathRef = useRef<SVGRectElement | null>(null); // Specify type for pathRef
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
@@ -95,11 +96,11 @@ export const MovingBorder = ({
 
   const x = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).x
+    (val) => pathRef.current?.getPointAtLength(val).x ?? 0 // Use nullish coalescing operator
   );
   const y = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).y
+    (val) => pathRef.current?.getPointAtLength(val).y ?? 0 // Use nullish coalescing operator
   );
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
