@@ -176,7 +176,7 @@ const ShaderMaterial = ({
   uniforms: Uniforms;
 }) => {
   const { size } = useThree();
-  const ref = useRef<THREE.Mesh>();
+  const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
 
   useFrame(({ clock }) => {
@@ -188,7 +188,7 @@ const ShaderMaterial = ({
     lastFrameTime = timestamp;
 
     const material = ref.current?.material as THREE.ShaderMaterial;
-    const timeLocation = material.uniforms.u_time;
+    const timeLocation = material.uniforms.u_time as { value: number };
     timeLocation.value = timestamp;
   });
 
@@ -205,16 +205,19 @@ const ShaderMaterial = ({
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector3().fromArray(uniform.value),
+            value: new THREE.Vector3().fromArray(uniform.value as number[]),
             type: "3f",
           };
           break;
         case "uniform1fv":
-          preparedUniforms[uniformName] = { value: uniform.value, type: "1fv" };
+          preparedUniforms[uniformName] = {
+            value: uniform.value as number[],
+            type: "1fv",
+          };
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = {
-            value: uniform.value.map((v: number[]) =>
+            value: (uniform.value as number[][]).map((v: number[]) =>
               new THREE.Vector3().fromArray(v)
             ),
             type: "3fv",
@@ -222,7 +225,7 @@ const ShaderMaterial = ({
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = {
-            value: new THREE.Vector2().fromArray(uniform.value),
+            value: new THREE.Vector2().fromArray(uniform.value as number[]),
             type: "2f",
           };
           break;
@@ -232,10 +235,13 @@ const ShaderMaterial = ({
       }
     }
 
+    // Ensure that we include 'type' for every uniform
     preparedUniforms["u_time"] = { value: 0, type: "1f" };
     preparedUniforms["u_resolution"] = {
       value: new THREE.Vector2(size.width * 2, size.height * 2),
+      type: "2f", // Add type here
     };
+
     return preparedUniforms;
   };
 
