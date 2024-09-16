@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+<<<<<<< HEAD
+=======
+
+# Sentry Config File
+.env.sentry-build-plugin
+>>>>>>> 53d2ee5 (Completed the portfolio project but required a little bit of maintenance on the data file)

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+import Approach from "@/components/Approach";
+import Clients from "@/components/Clients";
+import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
+>>>>>>> 53d2ee5 (Completed the portfolio project but required a little bit of maintenance on the data file)
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
@@ -13,6 +20,13 @@ export default function Home() {
         <Hero />
         <Grid />
         <RecentProjects />
+<<<<<<< HEAD
+=======
+        <Clients />
+        <Experience />
+        <Approach />
+        <Footer />
+>>>>>>> 53d2ee5 (Completed the portfolio project but required a little bit of maintenance on the data file)
       </div>
     </main>
   );
