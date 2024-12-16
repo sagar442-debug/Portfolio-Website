@@ -1,5 +1,5 @@
 "use client";
-import React, { HTMLProps, SVGProps, useRef } from "react";
+import React, { HTMLProps, useRef } from "react";
 import {
   motion,
   useAnimationFrame,
