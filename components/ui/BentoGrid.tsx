@@ -1,15 +1,17 @@
-"use client";
-import { cn } from "@/lib/utils/cn";
-import { BackgroundGradientAnimation } from "./GradientBg";
-import { Globe } from "./Globe";
-import { GlobeDemo } from "./GridGlobe";
 import { useState } from "react";
-import animationData from "@/data/confetti.json";
-import Lottie from "react-lottie";
-import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
 
-export const BentoGrid = ({
+// Also install this npm i --save-dev @types/react-lottie
+import Lottie from "react-lottie";
+
+import { cn } from "@/lib/utils/cn";
+
+import { BackgroundGradientAnimation } from "./GradientBg";
+import animationData from "@/data/confetti.json";
+import GridGlobe from "./GridGlobe";
+import MagicButton from "./MagicButton";
+
+const BentoGrid = ({
   className,
   children,
 }: {
@@ -29,7 +31,7 @@ export const BentoGrid = ({
   );
 };
 
-export const BentoGridItem = ({
+const BentoGridItem = ({
   className,
   id,
   title,
@@ -49,8 +51,8 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["React.JS", "Express", "Next.JS"];
-  const rightLists = ["Mongo DB", "SQL", "GraphQL"];
+  const leftLists = ["ReactJS", "Express", "Typescript"];
+  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
 
   const [copied, setCopied] = useState(false);
 
@@ -64,7 +66,7 @@ export const BentoGridItem = ({
   };
 
   const handleCopy = () => {
-    const text = "sagarsapkota@gmail.com";
+    const text = "hsu@jsmastery.pro";
     navigator.clipboard.writeText(text);
     setCopied(true);
   };
@@ -112,7 +114,7 @@ export const BentoGridItem = ({
         {id === 6 && (
           // add background animation , remove the p tag
           <BackgroundGradientAnimation>
-            {/* <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div> */}
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
           </BackgroundGradientAnimation>
         )}
 
@@ -135,7 +137,7 @@ export const BentoGridItem = ({
           </div>
 
           {/* for the github 3d globe */}
-          {id === 2 && <GlobeDemo />}
+          {id === 2 && <GridGlobe />}
 
           {/* Tech stack list div */}
           {id === 3 && (
@@ -196,3 +198,5 @@ export const BentoGridItem = ({
     </div>
   );
 };
+
+export { BentoGrid, BentoGridItem };

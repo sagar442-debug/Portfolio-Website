@@ -205,13 +205,16 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
+    link: "https://github.com/sagar442-debug",
   },
   {
     id: 2,
     img: "/twit.svg",
+    link: "https://x.com/sagar_306",
   },
   {
     id: 3,
     img: "/link.svg",
+    link: "https://www.linkedin.com/in/sagar-sapkota091/",
   },
 ];
