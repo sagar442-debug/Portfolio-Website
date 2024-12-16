@@ -193,11 +193,15 @@ const ShaderMaterial = ({
   });
 
   const getUniforms = () => {
-    const preparedUniforms: { [key: string]: { value: any; type: string } } =
-      {};
+    const preparedUniforms: {
+      [key: string]: { value: number | number[] | number[][]; type: string };
+    } = {};
 
     for (const uniformName in uniforms) {
-      const uniform = uniforms[uniformName] as { value: any; type: string };
+      const uniform = uniforms[uniformName] as {
+        value: number | number[] | number[][];
+        type: string;
+      };
 
       switch (uniform.type) {
         case "uniform1f":
