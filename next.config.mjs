@@ -1,12 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
-<<<<<<< HEAD
 const nextConfig = {};
-=======
-const nextConfig = {
-  output: "export",
-};
->>>>>>> 2f62dc8bdbea7dd35afae0e443a1443ae8a155bd
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:

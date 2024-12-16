@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-"use client";
-import { cn } from "@/lib/utils/cn";
-import { BackgroundGradientAnimation } from "./GradientBg";
-import { GlobeDemo } from "./GridGlobe";
->>>>>>> 2f62dc8bdbea7dd35afae0e443a1443ae8a155bd
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
@@ -17,6 +10,7 @@ import { BackgroundGradientAnimation } from "./GradientBg";
 import animationData from "@/data/confetti.json";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "./MagicButton";
+import Image from "next/image";
 
 const BentoGrid = ({
   className,
@@ -97,7 +91,9 @@ const BentoGridItem = ({
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
+            <Image
+              height={200}
+              width={200}
               src={img}
               alt={img}
               className={cn(imgClassName, "object-cover object-center ")}
@@ -110,7 +106,9 @@ const BentoGridItem = ({
           } `}
         >
           {spareImg && (
-            <img
+            <Image
+              height={200}
+              width={200}
               src={spareImg}
               alt={spareImg}
               //   width={220}
