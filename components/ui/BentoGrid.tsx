@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+"use client";
+import { cn } from "@/lib/utils/cn";
+import { BackgroundGradientAnimation } from "./GradientBg";
+import { GlobeDemo } from "./GridGlobe";
+>>>>>>> 2f62dc8bdbea7dd35afae0e443a1443ae8a155bd
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
