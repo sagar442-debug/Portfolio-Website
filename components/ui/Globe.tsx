@@ -178,7 +178,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
       .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
       .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
-      .arcColor((e: Position) => (t: number) => e.color)
+      .arcColor((e: { color: string }) => e.color) // Fix for type issue with arcColor
       .arcAltitude((e) => (e as { arcAlt: number }).arcAlt * 1)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
       .arcDashLength(defaultProps.arcLength)
@@ -265,32 +265,28 @@ export function World(props: WorldProps) {
         intensity={0.8}
       />
       <Globe {...props} />
-      <OrbitControls
-        autoRotate={globeConfig.autoRotate}
-        autoRotateSpeed={globeConfig.autoRotateSpeed || 1}
-      />
+      <OrbitControls enableDamping enableZoom={false} dampingFactor={0.25} />
     </Canvas>
   );
 }
 
-function genRandomNumbers(min: number, max: number, amount: number) {
-  const numbers: number[] = [];
-  while (numbers.length < amount) {
-    const random = Math.floor(Math.random() * (max - min + 1)) + min;
-    if (!numbers.includes(random)) {
-      numbers.push(random);
-    }
+function genRandomNumbers(min: number, max: number, count: number) {
+  let numbers = [];
+  for (let i = 0; i < count; i++) {
+    let num;
+    do {
+      num = Math.floor(Math.random() * (max - min + 1)) + min;
+    } while (numbers.includes(num));
+    numbers.push(num);
   }
   return numbers;
 }
 
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#([0-9a-fA-F]{6})$/.exec(hex);
+function hexToRgb(hex: string) {
+  const result = /^#([0-9A-Fa-f]{6})$/.exec(hex);
   if (!result) return null;
-  const [r, g, b] = [
-    result[1].slice(0, 2),
-    result[1].slice(2, 4),
-    result[1].slice(4, 6),
-  ].map((x) => parseInt(x, 16));
+  const r = parseInt(result[1].substring(0, 2), 16);
+  const g = parseInt(result[1].substring(2, 4), 16);
+  const b = parseInt(result[1].substring(4, 6), 16);
   return { r, g, b };
 }
