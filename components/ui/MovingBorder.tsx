@@ -75,7 +75,7 @@ type MovingBorderProps = {
   duration?: number;
   rx?: string;
   ry?: string;
-} & SVGProps<SVGRectElement>; // Use SVGProps for otherProps
+} & React.SVGProps<SVGSVGElement>;
 
 export const MovingBorder = ({
   children,
@@ -84,7 +84,7 @@ export const MovingBorder = ({
   ry,
   ...otherProps
 }: MovingBorderProps) => {
-  const pathRef = useRef<SVGRectElement | null>(null); // Specify type for pathRef
+  const pathRef = useRef<SVGRectElement | null>(null); // Ensure pathRef is typed correctly
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
@@ -97,11 +97,11 @@ export const MovingBorder = ({
 
   const x = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).x ?? 0 // Use nullish coalescing operator
+    (val) => pathRef.current?.getPointAtLength(val).x ?? 0
   );
   const y = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).y ?? 0 // Use nullish coalescing operator
+    (val) => pathRef.current?.getPointAtLength(val).y ?? 0
   );
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
