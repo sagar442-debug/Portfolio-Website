@@ -73,11 +73,10 @@ export const projects = [
   {
     id: 1,
     title: "Wizresu.me",
-    des: "A full stack SASS tool that lets you build ATS friendly resume in one click!",
+    des: "A full stack SaaS tool that lets you build ATS friendly resume in one click!",
     img: "/WizResume.png",
     iconLists: [
       "/next.svg",
-      "/tail.svg",
       "/mongodb.svg",
       "/cloudflare.svg",
       "/aws.svg",

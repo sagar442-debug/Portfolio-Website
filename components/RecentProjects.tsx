@@ -77,8 +77,8 @@ const RecentProjects = () => {
                   target="_blank"
                   className="flex justify-center items-center"
                 >
-                  <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Check Live Site
+                  <p className="flex lg:text-[15px] md:text-xs text-sm text-purple">
+                    Go To Website
                   </p>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </Link>
