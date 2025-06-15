@@ -32,8 +32,8 @@ const Experience = () => {
           >
             <div className="flex lg:flex-row flex-col items-center lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
               <Image
-                height={1000}
-                width={1000}
+                height={700}
+                width={700}
                 src={card.thumbnail}
                 alt={card.thumbnail}
                 className="rounded-lg "
